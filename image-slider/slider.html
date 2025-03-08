@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Slider</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #575353;
+      }
+
+      .slider-container {
+        position: relative;
+        width: 80%;
+        max-width: 600px;
+      }
+
+      img {
+        width: 600px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .nav-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        z-index: 10;
+      }
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider-container">
+      <button class="nav-button prev" onclick="prevImage()">❮</button>
+      <img id="sliderImage" src=" " alt="Slider Image" />
+      <button class="nav-button next" onclick="nextImage()">❯</button>
+    </div>
+
+    <script>
+      const images = [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEc9A_S6BPxCDRp5WjMFEfXrpCu1ya2OO-Lw&s+1",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXKJiY1uB5MYAIOiGyOdNoGUP-eHTxJBEeVrFQZfEXEhL0EcwzJiqxnCjojJmOhnyijX8&usqp=CAU+2",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7ftUp1EgyGhKs1potdPQb5zq4mRrYXdJEXw&s+3",
+       
+      ];
+
+      let currentIndex = 0;
+
+      function showImage(index) {
+        const sliderImage = document.getElementById("sliderImage");
+        sliderImage.src = images[index];
+      }
+
+      function prevImage() {
+        currentIndex =
+          currentIndex === 0 ? images.length - 1 : currentIndex - 1;
+        showImage(currentIndex);
+      }
+
+      function nextImage() {
+        currentIndex =
+          currentIndex === images.length - 1 ? 0 : currentIndex + 1;
+        showImage(currentIndex);
+      }
+
+      showImage(currentIndex);
+    </script>
+  </body>
+</html>
